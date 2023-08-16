@@ -1,0 +1,5 @@
+// Вывести одну произвольную Eur-транзакцию
+db.transactions.aggregate([
+    {$match: {currency: 'EUR'}},
+    {$sample: {size: 1}}
+]);
