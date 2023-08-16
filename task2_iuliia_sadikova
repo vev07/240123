@@ -1,0 +1,15 @@
+// Вывести все посты юзера 1 по убыванию даты создания
+db.posts.aggregate([
+    {$lookup: {
+            'from': 'users',
+            'localField': 'author_id',
+            'foreignField': '_id',
+            'as': 'author'
+        }},
+    {$unwind: '$author'},
+    {$match: {'author._id': 1}},
+    {$project: {
+            content: 1,
+            author_name: '$author.fullname',
+            _id: 0}}
+]);
