@@ -1,0 +1,4 @@
+db.posts.find(
+  { user_id: 1 },
+  { _id: 0, title: 1, content: 1, creation_date: 1 }
+).sort({ creation_date: -1 } );
