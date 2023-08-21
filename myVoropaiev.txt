@@ -1,0 +1,1 @@
+db.reactions.aggregate([{$group: {_id: 0, avgPrice: {$avg: '$reaction'}}}])
