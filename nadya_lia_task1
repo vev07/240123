@@ -1,0 +1,11 @@
+//Найти среднее значение реакции по всем юзерам
+db.reactions.aggregate([
+    {$lookup: {
+        from: 'users',
+        localField: 'author_id',
+        foreignField: '_id',
+        as: 'author'
+    }},
+    {$unwind: '$author'},
+    {$group: {_id: '$author_id', avg_reaction: {$avg: '$value'}}
+}])
